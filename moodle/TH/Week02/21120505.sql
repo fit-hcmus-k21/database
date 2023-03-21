@@ -6,7 +6,7 @@ use QLGV
 go
 
 -- create table GiaoVien --
-create table GIAOVIEN {
+create table GIAOVIEN (
     MAGV char(3) not null,
     HOTEN nvarchar(30),
     LUONG float,
@@ -17,21 +17,21 @@ create table GIAOVIEN {
     MABM nvarchar(8)
 
     primary key (MAGV)
-}
+)
 go
 
 -- create table GV_DT -- 
-create table GV_DT {
+create table GV_DT (
     MAGV char(3) not null,
     DIENTHOAI nchar(10) not null
 
     primary key (MAGV, DIENTHOAI)
-}
+)
 go
 
 
 -- create table Khoa --
-create table KHOA {
+create table KHOA (
     MAKHOA nchar(5) not null,
     TENKHOA nvarchar(30),
     NAMTL nchar(4),
@@ -41,11 +41,11 @@ create table KHOA {
     NGAYNHANCHUC datetime
 
     primary key(MAKHOA)
-}
+)
 go
 
 -- create table BoMon --
-create table BOMON {
+create table BOMON (
     MABM nvarchar(8) not null,
     TENBM nvarchar(30),
     PHONG char(3),
@@ -55,11 +55,11 @@ create table BOMON {
     NGAYNHANCHUC datetime
 
     primary key (MABM)
-}
+)
 go
 
 -- create table DeTai  --
-create table DETAI {
+create table DETAI (
     MADT char (3) not null,
     TENDT nvarchar(40),
     CAPQL nvarchar(20),
@@ -70,21 +70,21 @@ create table DETAI {
     GVCNDT char(3)
 
     primary key(MADT)
-}
+)
 go
 
 -- create table ChuDe --
-create table CHUDE {
+create table CHUDE (
     MACD varchar(8) not null,
     TENCHUDE nvarchar(40)
 
     primary key(MACD)
-}
+)
 go
 
 
 -- create table CongViec --
-create table CONGVIEC {
+create table CONGVIEC (
     MADT char(3) not null,
     SOTT int not null,
     TENCV nvarchar(40),
@@ -92,11 +92,11 @@ create table CONGVIEC {
     NGAYKT datetime
 
     primary key(MADT, STT)
-}
+)
 go
 
 -- create table ThamGiaDT --
-create table THAMGIADT {
+create table THAMGIADT (
     MAGV char(3) not null,
     MADT char(3) not null,
     STT int not null,
@@ -104,18 +104,18 @@ create table THAMGIADT {
     KETQUA nvarchar(8)
 
     primary key(MAGV, MADT, STT)
-}
+)
 go
 
 -- create table NguoiThan --
-create table NGUOITHAN {
+create table NGUOITHAN (
     MAGV char(3) not null,
     TEN nvarchar(8) not null,
     NGAYSINH datetime,
     PHAI nvarchar(3)
 
     primary key(MAGV, TEN)
-}
+)
 go
 
 
@@ -236,15 +236,15 @@ insert into THAMGIADT values('009', '002', 4, 1.5, null);
 go 
 
 -- table NGUOITHAN --
-insert table NGUOITHAN values('001', 'Hùng', '1990-01-14', 'Nam');
-insert table NGUOITHAN values('001', 'Thủy', '1994-12-08', 'Nữ');
-insert table NGUOITHAN values('003', 'Hà', '1998-09-03', 'Nữ');
-insert table NGUOITHAN values('003', 'Thu', '1998-09-03', 'Nữ');
-insert table NGUOITHAN values('007', 'Mai', '2003-03-26', 'Nữ');
-insert table NGUOITHAN values('007', 'Vy', '2000-02-14', 'Nữ');
-insert table NGUOITHAN values('008', 'Nam', '1991-05-06', 'Nam');
-insert table NGUOITHAN values('009', 'An', '1996-08-19', 'Nam');
-insert table NGUOITHAN values('010', 'Nguyệt', '2006-01-14', 'Nữ');
+insert into NGUOITHAN values('001', 'Hùng', '1990-01-14', 'Nam');
+insert into NGUOITHAN values('001', 'Thủy', '1994-12-08', 'Nữ');
+insert into NGUOITHAN values('003', 'Hà', '1998-09-03', 'Nữ');
+insert into NGUOITHAN values('003', 'Thu', '1998-09-03', 'Nữ');
+insert into NGUOITHAN values('007', 'Mai', '2003-03-26', 'Nữ');
+insert into NGUOITHAN values('007', 'Vy', '2000-02-14', 'Nữ');
+insert into NGUOITHAN values('008', 'Nam', '1991-05-06', 'Nam');
+insert into NGUOITHAN values('009', 'An', '1996-08-19', 'Nam');
+insert into NGUOITHAN values('010', 'Nguyệt', '2006-01-14', 'Nữ');
 go
 
 -- table DETAI --
@@ -258,37 +258,37 @@ insert into DETAI values('007', 'HTTT quản lý thư viện ở các trường 
 go
 
 -- table GIAOVIEN --
-insert into table GIAOVIEN values('001', 'Nguyễn Hoài An', 2000.0, 'Nam', '1973-02-15', '25/3 Lạc Long Quân, Q.10, TP HCM', null, 'MMT');
-insert into table GIAOVIEN values('002', 'Trần Trà Hương', 2500.0, 'Nữ', '1960-06-20', '125 Trần Hưng Đạo, Q.1, TP HCM', null, 'HTTT');
-insert into table GIAOVIEN values('003', 'Nguyễn Ngọc Ánh', 2200.0, 'Nữ', '1975-05-11', '12/21 Võ Văn Ngân Thủ Đức, TP HCM', '002', 'HTTT');
-insert into table GIAOVIEN values('004', 'Trương Nam Sơn', 2300.0, 'Nam', '1959-06-20', '215 Lý Thường Kiệt, TP Biên Hòa', null, 'VS');
-insert into table GIAOVIEN values('005', 'Lý Hoàng Hà', 2500.0, 'Nam', '1954-10-23', '22/5 Nguyễn Xí, Q.Bình Thạnh, TP HCM', null, 'VLĐT');
-insert into table GIAOVIEN values('006', 'Trần Bạch Tuyết', 1500.0, 'Nữ', '1980-05-20', '127 Hùng Vương, TP Mỹ Tho', '004', 'VS');
-insert into table GIAOVIEN values('007', 'Nguyễn An Trung', 2100.0, 'Nam', '1976-06-05', '234 3/2, TP Biên Hòa', null, 'HPT');
-insert into table GIAOVIEN values('008', 'Trần Trung Hiếu', 1800.0, 'Nam', '1977-08-06', '22/11 Lý Thường Kiệt, TP Mỹ Tho', '007', 'HPT');
-insert into table GIAOVIEN values('009', 'Trần Hoàng Nam', 2000.0, 'Nam', '1975-11-22', '234 Trấn Não, An Phú, TP HCM', '001', 'MMT');
-insert into table GIAOVIEN values('010', 'Phạm Nam Thanh', 1500.0, 'Nam', '1980-12-12', '221 Hùng Vương, Q.5, TP HCM', '007', 'HPT');
+insert into  GIAOVIEN values('001', 'Nguyễn Hoài An', 2000.0, 'Nam', '1973-02-15', '25/3 Lạc Long Quân, Q.10, TP HCM', null, 'MMT');
+insert into  GIAOVIEN values('002', 'Trần Trà Hương', 2500.0, 'Nữ', '1960-06-20', '125 Trần Hưng Đạo, Q.1, TP HCM', null, 'HTTT');
+insert into  GIAOVIEN values('003', 'Nguyễn Ngọc Ánh', 2200.0, 'Nữ', '1975-05-11', '12/21 Võ Văn Ngân Thủ Đức, TP HCM', '002', 'HTTT');
+insert into  GIAOVIEN values('004', 'Trương Nam Sơn', 2300.0, 'Nam', '1959-06-20', '215 Lý Thường Kiệt, TP Biên Hòa', null, 'VS');
+insert into  GIAOVIEN values('005', 'Lý Hoàng Hà', 2500.0, 'Nam', '1954-10-23', '22/5 Nguyễn Xí, Q.Bình Thạnh, TP HCM', null, 'VLĐT');
+insert into  GIAOVIEN values('006', 'Trần Bạch Tuyết', 1500.0, 'Nữ', '1980-05-20', '127 Hùng Vương, TP Mỹ Tho', '004', 'VS');
+insert into  GIAOVIEN values('007', 'Nguyễn An Trung', 2100.0, 'Nam', '1976-06-05', '234 3/2, TP Biên Hòa', null, 'HPT');
+insert into  GIAOVIEN values('008', 'Trần Trung Hiếu', 1800.0, 'Nam', '1977-08-06', '22/11 Lý Thường Kiệt, TP Mỹ Tho', '007', 'HPT');
+insert into  GIAOVIEN values('009', 'Trần Hoàng Nam', 2000.0, 'Nam', '1975-11-22', '234 Trấn Não, An Phú, TP HCM', '001', 'MMT');
+insert into  GIAOVIEN values('010', 'Phạm Nam Thanh', 1500.0, 'Nam', '1980-12-12', '221 Hùng Vương, Q.5, TP HCM', '007', 'HPT');
 go
 
 -- table BOMON --
-insert table BOMON values('CNTT', 'Công nghệ tri thức', 'B15', '0838126126', null, 'CNTT', null);
-insert table BOMON values('HHC', 'Hóa hữu cơ', 'B44', '0838222222', null, 'HH', null);
-insert table BOMON values('HL', 'Hóa lý', 'B42', '0838878787', null, 'HH', null);
-insert table BOMON values('HPT', 'Hóa phân tích', 'B43', '0838777777', '007', 'HH', '2007-10-15');
-insert table BOMON values('HTTT', 'Hệ thống thông tin', 'B13', '0838125125', '002', 'CNTT', '2004-09-20');
-insert table BOMON values('MMT', 'Mạng máy tính', 'B16', '0838676767', '001', 'CNTT', '2005-05-15');
-insert table BOMON values('SH', 'Sinh hóa', 'B33', '0838898989', null, 'SH', null);
-insert table BOMON values('VLĐT', 'Vật lý điện tử', 'B23', '0838234234', null, 'VL', null);
-insert table BOMON values('VLUD', 'Vật lý ứng dụng', 'B24', '0838454545', '005', 'VL', '2006-02-18');
-insert table BOMON values('VS', 'Vi sinh', 'B32', '0838909090', '004', 'SH', '2007-01-01');
+insert into BOMON values('CNTT', 'Công nghệ tri thức', 'B15', '0838126126', null, 'CNTT', null);
+insert into BOMON values('HHC', 'Hóa hữu cơ', 'B44', '0838222222', null, 'HH', null);
+insert into BOMON values('HL', 'Hóa lý', 'B42', '0838878787', null, 'HH', null);
+insert into BOMON values('HPT', 'Hóa phân tích', 'B43', '0838777777', '007', 'HH', '2007-10-15');
+insert into BOMON values('HTTT', 'Hệ thống thông tin', 'B13', '0838125125', '002', 'CNTT', '2004-09-20');
+insert into BOMON values('MMT', 'Mạng máy tính', 'B16', '0838676767', '001', 'CNTT', '2005-05-15');
+insert into BOMON values('SH', 'Sinh hóa', 'B33', '0838898989', null, 'SH', null);
+insert into BOMON values('VLĐT', 'Vật lý điện tử', 'B23', '0838234234', null, 'VL', null);
+insert into BOMON values('VLUD', 'Vật lý ứng dụng', 'B24', '0838454545', '005', 'VL', '2006-02-18');
+insert into BOMON values('VS', 'Vi sinh', 'B32', '0838909090', '004', 'SH', '2007-01-01');
 go
 
 
 -- table KHOA --
-insert table KHOA values('CNTT', 'Công nghệ thông tin', '1995', 'B11', '0838123456', '002', '2005-02-20');
-insert table KHOA values('HH', 'Hóa học', '1980', 'B41', '0838456456', '007', '2001-10-15');
-insert table KHOA values('SH', 'Sinh học', '1980', 'B31', '0838454545', '004', '2000-10-11');
-insert table KHOA values('VL', 'Vật lý', '1976', 'B21', '0838223223', '005', '2003-09-18');
+insert into KHOA values('CNTT', 'Công nghệ thông tin', '1995', 'B11', '0838123456', '002', '2005-02-20');
+insert into KHOA values('HH', 'Hóa học', '1980', 'B41', '0838456456', '007', '2001-10-15');
+insert into KHOA values('SH', 'Sinh học', '1980', 'B31', '0838454545', '004', '2000-10-11');
+insert into KHOA values('VL', 'Vật lý', '1976', 'B21', '0838223223', '005', '2003-09-18');
 go
 
 -- table GV_DT --
