@@ -373,4 +373,92 @@ go
 declare @magv char(3)
 exec SP_GenerateMAGV @magv out
 print @magv
+go
 
+
+
+-------------------P2 | Bài tập về nhà -----------------------
+
+-- 1:
+create procedure spDatPhong
+				@makh char(5),
+				@maphong char(5),
+				@ngaydat date
+AS
+BEGIN
+	-- Kiểm tra mã khách hàng phải hợp lệ
+	if not exists (select * from KHACH where MaKH = @makh) 
+	Begin
+		raiserror(N'Lỗi: Mã Khách hàng không hợp lệ, không tồn tại trong bảng KHACH !', 16, 1)
+		return
+	End
+
+	-- Kiểm tra mã phòng hợp lệ
+	if not exists (select * from PHONG where MaPhong = @maphong)
+	Begin
+		raiserror(N'Lỗi: Mã Khách phòng không hợp lệ, không tồn tại trong bảng PHONG !', 16, 1)
+		return
+	End
+
+	-- Chỉ được đặt phòng nếu tình trạng phòng rảnh
+	if (select TinhTrang from PHONG where MaPhong = @maphong) = N'Bận'
+	Begin
+		raiserror(N'Lỗi: Tình trạng phòng bận, đã được đặt trước! ', 16, 1)
+		return
+	End
+
+	-- Đặt phòng
+	--			Tạo mã đặt phòng 
+	declare @id int
+	set @id = (select MAX(Ma) from DATPHONG) + 1
+	
+	-- Ghi nhận thông tin đặt hàng xuống CSDL
+	insert into DATPHONG (Ma, MaKH, MaPhong, NgayDP) values (@id, @makh, @maphong, @ngaydat)
+
+	-- Cập nhật tình trạng phòng bận
+	update PHONG
+	set TinhTrang = N'Bận' 
+	where MaPhong = @maphong
+	
+END
+go
+
+
+-- 2:
+create procedure spTraPhong
+				@madp int,
+				@makh char(5)
+AS
+BEGIN
+	-- Kiểm tra tính hợp lệ của mã đặt phòng, mã KH
+	if not exists (select * from DATPHONG where Ma = @madp and MaKH = @makh) 
+	Begin
+		raiserror(N'Lỗi: không có thông tin đặt phòng', 16, 1)
+		return
+	End
+	-- Ngày trả phòng là ngày hiện hành
+	declare @ngaytra date
+	set @ngaytra = getdate()
+
+	-- Tiền thanh toán được tính theo công thức: Tien = So ngay * Don gia
+	declare @songay int
+	declare @dongia int
+	
+	set @dongia = (select DonGia from PHONG where MaPhong = (select MaPhong from DATPHONG where Ma = @madp))
+	set @songay = day(@ngaytra) - day(select NgayDP from DATPHONG where Ma = @madp)
+
+	declare @TongTien int
+	set @TongTien = @dongia * @songay
+
+	-- Cập nhật thông tin trả phòng vào database
+		update DATPHONG
+		set NgayTra = @ngaytra and ThanhTien = @TongTien
+		where Ma = @madp
+
+	-- Cập nhật tình trạng rảnh
+	UPDATE PHONG 
+	set TinhTrang = N'Rảnh'
+	where MaPhong = (select MaPhong from DATPHONG where Ma = @madp)
+
+END
+go
