@@ -1,9 +1,69 @@
 ## Môn học: cơ sở dữ liệu
+
+```mermaid
+graph LR
+TQ[Tổng quát nội dung môn học] --> B[Mô hình dữ liệu]
+TQ --> D[Ngôn ngữ đại số quan hệ]
+TQ --> E[Ngôn ngữ SQL]
+TQ --> F[Phụ thuộc hàm và dạng chuẩn]
+TQ --> G[Phép tính quan hệ]
+TQ --> H[Ràng buộc toàn vẹn]
+
+B --> I[Mô hình thực thể kết hợp]
+B --> J[Mô hình dữ liệu quan hệ]
+B --> IJ[Chuyển đổi MH thực thể kết hợp sang MH quan hệ]
+
+D --> K[Phép hội, giao, hiệu, tích Đề-các]
+D --> L[Phép chọn, chiếu, gán, đổi tên, kết, chia]
+D --> M[Các hàm tính tổng hợp và gom nhóm]
+D --> N[Phép toán cập nhật dữ liệu]
+
+E --> O[Tạo, cập nhật, khai báo RB cơ bản]
+E --> P[Truy vấn dữ liệu cơ bản: select - from - where, ...]
+E --> Q[Truy vấn dữ liệu phức tạp]
+Q --> R[Truy vấn lồng]
+R --> R1[Lồng phân cấp]
+R --> R2[Lồng tương quan]
+Q --> S[Phép kết - Join]
+Q --> T[Hàm tính tổng hợp, Group by, Having]
+
+F --> U[Các dạng chuẩn]
+U --> V[Dạng chuẩn 1]
+U --> W[Dạng chuẩn 2]
+U --> X[Dạng chuẩn 3]
+U --> Y[Dạng chuẩn BCNF]
+F --> Z[Phụ thuộc hàm]
+Z --> Z1[Phụ thuộc đầy đủ]
+Z --> Z2[Phụ thuộc bắc cầu]
+
+G --> AA[ Phép tính quan hệ có biến là bộ]
+G --> AB[Phép tính quan hệ có biến là miền]
+
+H --> AC[Các đặc trưng:]
+AC --> AD[Bối cảnh]
+AC --> AE[Nội dung]
+AC --> AF[Bảng tầm ảnh hưởng]
+H --> AG[Phân loại]
+AG --> AH[RBTV trên 1 quan hệ]
+AG --> AI[RBTV trên nhiều quan hệ]
+H --> AJ[Cài đặt RBTV với SQL]
+AJ --> AK[Assertion]
+AJ --> AL[Trigger]
+AJ --> AM[Stored Procedure]
+
+
+```
+
 ### Nội dung: </br>
 I. [Mô hình thực thể kết hợp](#mô-hình-thực-thể-kết-hợp) </br>
 II. [Mô hình dữ liệu quan hệ]() </br>
 III. [Ngôn ngữ đại số quan hệ]() </br>
 IV. [Ngôn ngữ SQL]() </br>
+V. [Phụ thuộc hàm và dạng chuẩn]() </br>
+VI. [Phép tính quan hệ]() </br>
+VII. [Ràng buộc toàn vẹn]() </br>
+
+
 
 
 # Mô hình thực thể kết hợp
@@ -106,7 +166,7 @@ Một cửa hàng chuyên bán sỉ và lẻ các mặt hàng đủ loại. Ngư
 - Khi khách hàng đến mua hàng, cửa hàng sẽ lưu lại tất cả thông tin các hóa đơn bán hàng để tiện việc kiểm tra. Thông tin hóa đơn gồm: số hóa đơn, ngày lập hóa đơn, tên khách hàng, địa chỉ khách hàng, điện thoại khách hàng, khách hàng đã mua những mặt hàng nào với số lượng mua, đơn giá mua là bao nhiêu.
 
 
-**_Soluiton:_**
+**_Solution:_**
 
 **2. Sau đây là mô tả về hệ thống Quản lý tồn kho. Hãy xây dựng mô hình ER cho hệ thống này:**
 
@@ -114,7 +174,7 @@ Một cửa hàng chuyên bán sỉ và lẻ các mặt hàng đủ loại. Ngư
 Thông tin của nhân viên phụ trách địa điểm tại các kho và nhân viên đi nhận hàng từ các kho bao gồm: Mã nhân viên (MÃ_NV) để phân biệt giữa các nhân viên, có họ tên, phái, năm sinh, địa chỉ thưởng trú, số điện thoại của nhân viên
 
 
-**_Soluiton:_**
+**_Solution:_**
 
 **3. Hãy xây dựng mô hình ER cho Hệ thống quản lý chuyên đề được mô tả như sau:**
 <div align="center">
@@ -122,7 +182,7 @@ Thông tin của nhân viên phụ trách địa điểm tại các kho và nhâ
 <img src="./imgs/QL_CD02.png">
 </div>
 
-**_Soluiton:_**
+**_Solution:_**
 
 **4. Hãy xây dựng mô hình ER cho Hệ thống quản lý cửa hàng nước giải khát được mô tả như sau:**
 <div align="center">
@@ -130,7 +190,7 @@ Thông tin của nhân viên phụ trách địa điểm tại các kho và nhâ
 <img src="./imgs/QL_CHNGK02.png">
 </div>
 
-**_Soluiton:_**
+**_Solution:_**
 
 **5. Sau đây là mô tả về việc quản lý bán hàng tại một siêu thị. Hãy xây dựng mô hình ER cho hệ thống này:**
 <div align="center">
@@ -138,7 +198,7 @@ Thông tin của nhân viên phụ trách địa điểm tại các kho và nhâ
 <img src="./imgs/QL_ST02.png">
 </div>
 
-**_Soluiton:_**
+**_Solution:_**
 
 **6: Thiết kế ER. Chuyển qua lược đồ quan hệ**
 ```
@@ -156,7 +216,7 @@ Nhân viên siêu thị có mã nhân viên duy nhất phân biệt các nhân v
 nhân viên có nhiều số điện thoại, có thể có nhiều chứng chỉ nghiệp vụ.
 ```
 
-**_Soluiton:_**
+**_Solution:_**
 
 **7: Thiết kế ER. Chuyển qua lược đồ quan hệ**
 ```
@@ -170,7 +230,7 @@ sẽ có điểm số tương ứng (điểm số từ 1 đến 100). Trong mộ
 xác nhận tham gia (C: có tham gia, V: vắng thi)
 ``` 
 
-**_Soluiton:_**
+**_Solution:_**
 
 **8: Thiết kế ER & chuyển qua lược đồ quan hệ**
 ```
@@ -192,7 +252,46 @@ học vị có nhiều giảng viên đạt được. Ví dụ 1 giảng viên l
 sĩ.
 ```
 
-**_Soluiton:_**
+**_Solution:_**
+
+
+<!-- 
+
+### Tài liệu tham khảo:
+- [Ngôn ngữ đại số quan hệ](https://voer.edu.vn/m/cac-phep-toan-dai-so-quan-he/6cd3b4c6)
 
 
 _to be continued..._
+
+
+mermaid 
+flowchart TD
+    A[Christmas] ->|Get money| B(Go shopping)
+    B -> C{Let me think}
+    C ->|One| D[fa:fa-laptop Laptop]
+    C ->|Two| E[fa:fa-phone iPhone]
+    C ->|Three| F[fa:fa-car Car]
+
+
+
+mermaid
+erDiagram
+
+  demo-customers {
+    INT id
+    VARCHAR name
+    VARCHAR email
+  }
+
+  demo-orders {
+    INT id
+    INT customer_id
+    DATE order_date
+    DECIMAL total_amount
+  }
+
+  demo-customers ||--o{ demo-orders : "foreign key"
+
+ -->
+
+
